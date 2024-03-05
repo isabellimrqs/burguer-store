@@ -10,16 +10,29 @@ const styles = StyleSheet.create({
     text:{
         fontSize: 40,
         fontWeight:'bold',
-        color: 'white',
-        marginTop: 25
+        color: 'white'
     },
-    text2:{
-        fontSize: 15,
-        fontWeight:'bold',
-        color: '#fb8500',
+    caixa:{
+        width:'70%',
+        height: 50,
+        backgroundColor:'white',
+        borderRadius: 10,
+        fontSize:25,
+        padding:10,
+        color: '#aaa',
+        outlineStyle: 'none'
+    },
+
+    caixaX:{
+        width: '100%',
+        alignItems: 'center',
+        justifyContent:'center',
+        height:50,
+        marginTop:20,
+        outlineStyle: 'none'
     },
     button:{
-        backgroundColor:'#37eb34',
+        backgroundColor:'#e85d04',
         width:'30%',
         height:50,
         borderRadius:20,
@@ -30,17 +43,10 @@ const styles = StyleSheet.create({
     textButton:{
         fontSize: 25,
         fontWeight:'bold',
+        color: 'white'
         
-    },
-    produto: {
-        width: 150,
-        height: 150,
-        backgroundColor: 'white',
-        padding: 20,
-        margin: 10,
-        alignItems: 'center',
-        borderRadius: 5
     }
 })
+
 
 export default styles

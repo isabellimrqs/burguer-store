@@ -1,16 +1,26 @@
 import React,{useState} from "react"
 import { View, Text, Pressable, TextInput, Alert } from "react-native"
 import styles from "./styles"
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import app from "../firebaseConfig";
+import axios from "axios";
 
-export default function Login({navigation}) {
+export default function Register({navigation}) {
     const [user, setUser] = useState('')
     const [pass, setPass] = useState('')
+    const [cep, setCep] = useState('')
+    const [rua, setRua] = useState('')
     const auth = getAuth(app);
+
+    function pesquisar(){
+        axios.get(`https://viacep.com.br/ws/${cep}/json/`)
+        .then((response)=>{
+            console.log(response.data.logradouro)
+        })
+    }
     
-    function logar(){      
-        signInWithEmailAndPassword(auth, user, pass)
+    function cadastrar(){      
+        createUserWithEmailAndPassword(auth, user, pass)
         .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
@@ -29,7 +39,7 @@ export default function Login({navigation}) {
         <View style={styles.container}>
 
             <View>
-                <Text style={styles.text}>Login</Text>
+                <Text style={styles.text}>Sign Up</Text>
             </View>
 
             <View style={styles.caixaX}>
@@ -50,12 +60,20 @@ export default function Login({navigation}) {
                     secureTextEntry={true}
                 />
             </View>
+            <View style={styles.caixaX}>
+                <TextInput
+                    style={styles.caixa}
+                    placeholder="CEP"
+                    value={cep}
+                    onChangeText={setCep}
+                />
+            </View>
 
 
             <View style={styles.caixaX}>
                 <Pressable
                     style={styles.button}
-                    onPress={()=>logar()}
+                    onPress={()=>pesquisar()}
                 >
                     <Text style={styles.textButton}>Ok</Text>
                 </Pressable>
